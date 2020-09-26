@@ -147,40 +147,4 @@ public class AddressBookMain {
    	  
 	 }
 
-	 public static void main(String[] args) {
-		 
-		 Scanner sc3 = new Scanner(System.in);
-		 System.out.println("Welcome to Address Book Program in AddressBookMain class on Master Branch \n");
-		 AddressBookMain a= new AddressBookMain();
-		 
-		 boolean flag=true;
-		 while(flag) {
-			 System.out.println("\n1.Add\n2.Edit\n3.Delete\nEnter your choice : ");
-			 int choice = sc3.nextInt();
-			 switch(choice) {
-			 case 1:
-				  a.AddDetails();
-				  break;
-				  
-			  case 2:
-				  System.out.println("Enter firstname to edit");
-				  Scanner sc4 = new Scanner(System.in);
-				  String a1= sc4.nextLine();
-				  a.EditDetailsByFirstName(a1);
-				  break;
-				  
-			  case 3:
-				  System.out.println("Enter firstname to delete");
-				  Scanner sc5 = new Scanner(System.in);
-				  String a2= sc5.nextLine();
-				  a.DeleteByFirstName(a2);;
-				  break;
-				  
-			  default:
-				  System.out.println("Select either 1 or 2, terminated!!!!");
-				  sc3.close();
-				  flag=false;
-			 } 
-		  }	 
-	   }
 }
