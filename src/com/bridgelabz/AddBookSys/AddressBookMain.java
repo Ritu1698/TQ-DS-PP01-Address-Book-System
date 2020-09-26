@@ -36,8 +36,7 @@ public class AddressBookMain {
    	  
      }
 	 
-	 public void AddName()
-     {
+	 public void AddDetails(){
 		 String firstname,lastname,address,city,state,zip,number,email;
    	     System.out.println("Enter your details:\n");
    	     System.out.println("Firstname\n");
@@ -129,7 +128,24 @@ public class AddressBookMain {
 		 
 		 
 	 }
-	 
+
+	 public void DeleteByFirstName(String firstname) {
+		 
+		 for(int i=0;i<persons.size();i++){
+			 
+			 Contact x = (Contact)persons.get(i);
+			 if(firstname.equals(x.firstname)){
+				 persons.remove(i);
+			 }
+		 }
+         System.out.println("Contact Succesfully Deleted!!!\n\nContactList Contains\n"); 	     
+   	     for (int i = 0; i < persons.size(); i++){ 
+   	    	System.out.println(i+1+". Firstname "+persons.get(i).firstname+" Lastname "+persons.get(i).lastname+
+   	    			" Address "+persons.get(i).address+" City "+persons.get(i).city+" State "+persons.get(i).state+
+   	    			" Zip "+persons.get(i).zip+" Phone number "+persons.get(i).number+" Email "+persons.get(i).email+"\n"); 
+         }	  
+   	  
+	 }
 	 public static void main(String[] args) {
 		 
 		 Scanner sc3 = new Scanner(System.in);
@@ -138,19 +154,26 @@ public class AddressBookMain {
 		 
 		 boolean flag=true;
 		 while(flag) {
-			 System.out.println("\n1.Add\n2.Edit\nEnter your choice : ");
+			 System.out.println("\n1.Add\n2.Edit\n3.Delete\nEnter your choice : ");
 			 int choice = sc3.nextInt();
 			 switch(choice) {
 			 case 1:
-				  a.AddName();
+				  a.AddDetails();
 				  break;
 				  
 			  case 2:
-				  System.out.println("Enter name to edit");
+				  System.out.println("Enter firstname to edit");
 				  Scanner sc4 = new Scanner(System.in);
 				  String a1= sc4.nextLine();
 				  a.EditDetailsByFirstName(a1);
-				  break;  
+				  break;
+				  
+			  case 3:
+				  System.out.println("Enter firstname to delete");
+				  Scanner sc5 = new Scanner(System.in);
+				  String a2= sc5.nextLine();
+				  a.DeleteByFirstName(a2);;
+				  break;
 				  
 			  default:
 				  System.out.println("Select either 1 or 2, terminated!!!!");
