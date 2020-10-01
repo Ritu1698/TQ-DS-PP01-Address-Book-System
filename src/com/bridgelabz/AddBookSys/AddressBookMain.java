@@ -4,8 +4,8 @@ import java.util.*;
 public class AddressBookMain {
 	
 	public ArrayList<Contact> persons;
-	public HashMap<String, Contact> StatePersonMap;
-    public HashMap<String, Contact> CityPersonMap;
+	public HashMap<String, ArrayList<Contact>> StatePersonMap;
+    public HashMap<String, ArrayList<Contact>> CityPersonMap;
     public ArrayList<Contact> personsMap;
 
 	
@@ -19,8 +19,8 @@ public class AddressBookMain {
 	 public AddressBookMain(){
 		 
 	       persons = new ArrayList<Contact>();  
-	       StatePersonMap = new HashMap<String,Contact>();
-	       CityPersonMap = new HashMap<String, Contact>();
+	       StatePersonMap = new HashMap<String,ArrayList<Contact>>();
+	       CityPersonMap = new HashMap<String,ArrayList<Contact>>();
 	 }
 	 
 	 public Contact SearchByFirstName(String firstname){
@@ -49,13 +49,28 @@ public class AddressBookMain {
      }
 	 
 	 public void SearchPersonByCityOrStateHashmap(String location, int StateOrCityFlag){
+		 
 		 if(StateOrCityFlag ==0) {
-			 Contact contact= CityPersonMap.get(location);
-			 System.out.println("\n"+contact.firstname+" "+contact.lastname+" "+contact.address+" "+contact.city+" "+contact.state+" "+contact.number+" "+contact.email+" "+contact.zip+"\n");
+			 ArrayList<Contact> person = new ArrayList<Contact>();
+			 person = CityPersonMap.get(location);
+			 for(int i=0;i<person.size();i++){
+				 System.out.println("Firstname "+person.get(i).firstname+" Lastname "+person.get(i).lastname+
+	    	    			" Address "+person.get(i).address+" City "+person.get(i).city+" State "+person.get(i).state+
+	    	    			" Zip "+person.get(i).zip+" Phone number "+person.get(i).number+" Email "+person.get(i).email+"\n");   			    
+		     
+			 }
+			 System.out.println(person);
+			 
 		 }
 		 else if(StateOrCityFlag ==1) {
-			 Contact contact= StatePersonMap.get(location);
-			 System.out.println("\n"+contact.firstname+" "+contact.lastname+" "+contact.address+" "+contact.city+" "+contact.state+" "+contact.number+" "+contact.email+" "+contact.zip+"\n");
+			 ArrayList<Contact> person = new ArrayList<Contact>();
+			 person = StatePersonMap.get(location);
+			 for(int i=0;i<persons.size();i++){
+				 System.out.println("Firstname "+person.get(i).firstname+" Lastname "+person.get(i).lastname+
+	    	    			" Address "+person.get(i).address+" City "+person.get(i).city+" State "+person.get(i).state+
+	    	    			" Zip "+person.get(i).zip+" Phone number "+person.get(i).number+" Email "+person.get(i).email+"\n");   			    
+		     
+			 }			
 		 }
 	     
 	 }
@@ -95,8 +110,16 @@ public class AddressBookMain {
    	     Contact c= new Contact(firstname, lastname, address, city, state, zip, number, email);
    	     persons.add(c);
    	     System.out.println("State"+state);
-   	     StatePersonMap.put(state, c);
-   	     CityPersonMap.put(city, c);
+   	     
+   	     if(!StatePersonMap.containsKey(state))
+   	    	StatePersonMap.put(state, new ArrayList<Contact>());
+   	     StatePersonMap.get(state).add(c);
+   	     
+   	     if(!CityPersonMap.containsKey(city))
+ 	    	StatePersonMap.put(city, new ArrayList<Contact>());
+ 	     StatePersonMap.get(city).add(c);
+   	     
+   	     
    	     
    	     System.out.println("Contact Succesfully Added!!!\n\nContactList Contains\n");
    	     
