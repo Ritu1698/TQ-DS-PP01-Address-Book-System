@@ -3,7 +3,7 @@ import java.util.*;
 
 public class AddressBookMain {
 	
-	public static ArrayList<Contact> persons;
+	public ArrayList<Contact> persons;
 	
 	
 	 Scanner sc = new Scanner(System.in);
@@ -17,7 +17,7 @@ public class AddressBookMain {
 	       persons = new ArrayList<Contact>();    
 	 }
 	 
-	 public static Contact SearchByFirstName(String firstname){
+	 public Contact SearchByFirstName(String firstname){
    	  
 		 Contact x = new Contact();
    	     for(int i=0;i<persons.size();i++){ 
@@ -27,6 +27,19 @@ public class AddressBookMain {
    		     }  
    	     }
 		 return x;
+     }
+	 
+	 public void SearchByCity(String city){
+	   	  
+		 
+   	     for(int i=0;i<persons.size();i++){ 
+   	    	 Contact contact = (Contact)persons.get(i); 
+   	    	 if(city.equals(contact.city)){
+   	    	    	System.out.println("Firstname "+persons.get(i).firstname+" Lastname "+persons.get(i).lastname+
+   	    	    			" Address "+persons.get(i).address+" City "+persons.get(i).city+" State "+persons.get(i).state+
+   	    	    			" Zip "+persons.get(i).zip+" Phone number "+persons.get(i).number+" Email "+persons.get(i).email+"\n");   			    
+   		     }  
+   	     } 
      }
 	 
 	 public void AddDetails(){
