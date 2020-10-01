@@ -4,6 +4,10 @@ import java.util.*;
 public class AddressBookMain {
 	
 	public ArrayList<Contact> persons;
+	public HashMap<String, Contact> StatePersonMap;
+    public HashMap<String, Contact> CityPersonMap;
+    public ArrayList<Contact> personsMap;
+
 	
 	
 	 Scanner sc = new Scanner(System.in);
@@ -14,7 +18,9 @@ public class AddressBookMain {
 	 
 	 public AddressBookMain(){
 		 
-	       persons = new ArrayList<Contact>();    
+	       persons = new ArrayList<Contact>();  
+	       StatePersonMap = new HashMap<String,Contact>();
+	       CityPersonMap = new HashMap<String, Contact>();
 	 }
 	 
 	 public Contact SearchByFirstName(String firstname){
@@ -41,6 +47,18 @@ public class AddressBookMain {
    		     }  
    	     } 
      }
+	 
+	 public void SearchPersonByCityOrStateHashmap(String location, int StateOrCityFlag){
+		 if(StateOrCityFlag ==0) {
+			 Contact contact= CityPersonMap.get(location);
+			 System.out.println("\n"+contact.firstname+" "+contact.lastname+" "+contact.address+" "+contact.city+" "+contact.state+" "+contact.number+" "+contact.email+" "+contact.zip+"\n");
+		 }
+		 else if(StateOrCityFlag ==1) {
+			 Contact contact= StatePersonMap.get(location);
+			 System.out.println("\n"+contact.firstname+" "+contact.lastname+" "+contact.address+" "+contact.city+" "+contact.state+" "+contact.number+" "+contact.email+" "+contact.zip+"\n");
+		 }
+	     
+	 }
 	 
 	 public void AddDetails(){
 		 
@@ -76,6 +94,10 @@ public class AddressBookMain {
    	     email=sc.nextLine();
    	     Contact c= new Contact(firstname, lastname, address, city, state, zip, number, email);
    	     persons.add(c);
+   	     System.out.println("State"+state);
+   	     StatePersonMap.put(state, c);
+   	     CityPersonMap.put(city, c);
+   	     
    	     System.out.println("Contact Succesfully Added!!!\n\nContactList Contains\n");
    	     
    	     for (int i = 0; i < persons.size(); i++){ 
