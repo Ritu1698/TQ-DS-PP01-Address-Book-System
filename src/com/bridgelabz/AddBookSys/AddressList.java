@@ -14,13 +14,14 @@ public class AddressList {
 	public void AddAddressBookByName(String name) {
 		
 		
-		 Scanner sc3 = new Scanner(System.in);
+		 
 		 System.out.println("Welcome to Address Book Program in AddressBookMain class on Master Branch \n");
 		 AddressBookMain a= new AddressBookMain();
-		 
 		 boolean flag1=true;
+		 Scanner sc3 = new Scanner(System.in);
 		 while(flag1) {
 			 System.out.println("\n1.Add\n2.Edit\n3.Delete\nEnter your choice : ");
+			 
 			 int choice = sc3.nextInt();
 			 switch(choice) {
 			 case 1:
@@ -46,7 +47,9 @@ public class AddressList {
 				  flag1=false;
 				  break;
 			 }
+			 
 		}
+		 sc3.close();
 		 
 		 AddressListMap.put(name, a);
 		 System.out.println("AddressBooks in AddressList:\n");

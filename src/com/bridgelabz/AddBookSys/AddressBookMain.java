@@ -17,30 +17,36 @@ public class AddressBookMain {
 	       persons = new ArrayList<Contact>();    
 	 }
 	 
-	 
 	 public static Contact SearchByFirstName(String firstname){
    	  
 		 Contact x = new Contact();
-		 
-   	     for(int i=0;i<persons.size();i++){
-   	    	 
-   	    	 Contact y = (Contact)persons.get(i);
-   	    	 if(firstname.equals(y.firstname)){
-   	    		 
+   	     for(int i=0;i<persons.size();i++){ 
+   	    	 Contact y = (Contact)persons.get(i); 
+   	    	 if(firstname.equals(y.firstname)){ 
    			   x = y;
-   		     }
-   		  
+   		     }  
    	     }
-   	     
 		 return x;
-   	  
      }
 	 
 	 public void AddDetails(){
+		 
 		 String firstname,lastname,address,city,state,zip,number,email;
    	     System.out.println("Enter your details:\n");
    	     System.out.println("Firstname\n");
    	     firstname=sc.nextLine();
+   	     
+   	     for(int i=0;i<persons.size();i++) {
+   	    	 
+   	    	Contact contacts= (Contact)persons.get(i);
+            if(firstname.equals(contacts.firstname))
+            {
+                System.out.println("This Name is already present in this given AddressBook!!!!\n");
+                return;
+            }
+   	    	 
+   	     }
+   	     
    	     System.out.println("Lastname\n");
    	     lastname=sc.nextLine();
    	     System.out.println("Address\n");
