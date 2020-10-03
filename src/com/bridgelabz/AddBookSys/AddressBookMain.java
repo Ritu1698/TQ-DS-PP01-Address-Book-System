@@ -51,21 +51,21 @@ public class AddressBookMain {
 	 public void SearchPersonByCityOrStateHashmap(String location, int StateOrCityFlag){
 		 
 		 if(StateOrCityFlag ==0) {
-			 ArrayList<Contact> person = new ArrayList<Contact>();
-			 person = CityPersonMap.get(location);
-			 for(int i=0;i<person.size();i++){
-				 System.out.println("Firstname "+person.get(i).firstname+" Lastname "+person.get(i).lastname+
-	    	    			" Address "+person.get(i).address+" City "+person.get(i).city+" State "+person.get(i).state+
-	    	    			" Zip "+person.get(i).zip+" Phone number "+person.get(i).number+" Email "+person.get(i).email+"\n");   			    
+			 ArrayList<Contact> person1 = new ArrayList<Contact>();
+			 person1 = CityPersonMap.get(location);
+			 for(int i=0;i<person1.size();i++){
+				 System.out.println("Firstname "+person1.get(i).firstname+" Lastname "+person1.get(i).lastname+
+	    	    			" Address "+person1.get(i).address+" City "+person1.get(i).city+" State "+person1.get(i).state+
+	    	    			" Zip "+person1.get(i).zip+" Phone number "+person1.get(i).number+" Email "+person1.get(i).email+"\n");   			    
 		     
 			 }
-			 System.out.println(person);
+			 //System.out.println(person);
 			 
 		 }
 		 else if(StateOrCityFlag ==1) {
 			 ArrayList<Contact> person = new ArrayList<Contact>();
 			 person = StatePersonMap.get(location);
-			 for(int i=0;i<persons.size();i++){
+			 for(int i=0;i<person.size();i++){
 				 System.out.println("Firstname "+person.get(i).firstname+" Lastname "+person.get(i).lastname+
 	    	    			" Address "+person.get(i).address+" City "+person.get(i).city+" State "+person.get(i).state+
 	    	    			" Zip "+person.get(i).zip+" Phone number "+person.get(i).number+" Email "+person.get(i).email+"\n");   			    
@@ -116,8 +116,8 @@ public class AddressBookMain {
    	     StatePersonMap.get(state).add(c);
    	     
    	     if(!CityPersonMap.containsKey(city))
- 	    	StatePersonMap.put(city, new ArrayList<Contact>());
- 	     StatePersonMap.get(city).add(c);
+ 	    	CityPersonMap.put(city, new ArrayList<Contact>());
+ 	     CityPersonMap.get(city).add(c);
    	     
    	     
    	     
